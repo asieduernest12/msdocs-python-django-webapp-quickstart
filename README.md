@@ -1,4 +1,4 @@
-# Deploy a Python (Django) web app to Azure App Service - Sample Application
+# Deploy a Python (Django) web app to Azure App Service - (Sample Application)[https://msdocs-python-webapp-quickstart-abz.azurewebsites.net/]
 
 This is the sample Django application for the Azure Quickstart [Deploy a Python (Django or Flask) web app to Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/quickstart-python).  For instructions on how to create the Azure resources and deploy the application to Azure, refer to the Quickstart article.
 
@@ -26,3 +26,10 @@ For deployment to production, create an app setting, `SECRET_KEY`. Use this comm
 ```shell
 python -c 'import secrets; print(secrets.token_hex())'
 ```
+
+
+## Goal checklist
+- [] Deploy from cli
+- [] Deploy from from github action
+- [] Deploy from from azure pipeline
+- [] Provision Infra basic, advanced
