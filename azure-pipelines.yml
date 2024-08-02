@@ -68,6 +68,7 @@ steps:
     action: 'Build services'
     includeSourceTags: true
     includeLatestTag: true
+    projectName: django_container_demo
     
 - task: DockerCompose@1
   inputs:
@@ -78,3 +79,4 @@ steps:
     action: 'Push services'
     includeSourceTags: true
     includeLatestTag: true
+    projectName: django_container_demo
