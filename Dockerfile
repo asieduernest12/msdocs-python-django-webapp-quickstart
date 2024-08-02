@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Expose the port for the Django application
-EXPOSE 8000-80010
+EXPOSE 8000
 
 # Set the command to run the Django development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
