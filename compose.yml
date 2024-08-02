@@ -3,7 +3,7 @@ services:
     build: .
     image: djangocontainerdemo_backend
     ports:
-      - '8000-8004:8000'
+      - '${PORT_EXT:-8000}:8000'
     restart: unless-stopped
 
   backend_local:
