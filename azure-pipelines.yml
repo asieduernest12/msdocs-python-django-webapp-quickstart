@@ -88,3 +88,4 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'msdocs-python-webapp-quickstart'
     slotName: 'production'
+    multicontainerConfigFile: '**/compose.yml'
