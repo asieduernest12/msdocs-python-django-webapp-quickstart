@@ -64,7 +64,7 @@ steps:
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
     azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
-    dockerComposeFile: '**/docker-compose.yml'
+    dockerComposeFile: '**/compose.yml'
     action: 'Build services'
     includeSourceTags: true
     includeLatestTag: true
@@ -74,7 +74,7 @@ steps:
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
     azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
-    dockerComposeFile: '**/docker-compose.yml'
+    dockerComposeFile: '**/compose.yml'
     action: 'Push services'
     includeSourceTags: true
     includeLatestTag: true
