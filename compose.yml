@@ -1,6 +1,7 @@
 services:
   backend:
     build: .
+    image: djangocontainerdemo_backend
     ports:
       - '8000-8004:8000'
     volumes:
