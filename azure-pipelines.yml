@@ -44,4 +44,3 @@ steps:
       resourceGroupName: 'msdocs-python-webapp-quickstart'
       slotName: 'production'
       containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
-      containerCommand: 'docker compose up -f **/compose.yml backend  -d'
