@@ -58,7 +58,23 @@ steps:
     testResultsFiles: "**/TEST-*.xml"
     testRunTitle: 'Python $(PYTHON_VERSION)'
   condition: succeededOrFailed()
-- task: Docker@2
+
+- task: DockerCompose@1
   inputs:
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
+    azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Build services'
+    includeSourceTags: true
+    includeLatestTag: true
+    
+- task: DockerCompose@1
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
+    azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Push services'
+    includeSourceTags: true
+    includeLatestTag: true
