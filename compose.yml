@@ -8,7 +8,6 @@ services:
 
   backend_local:
     <<: *backend
-    image: djangocontainerdemo_backend_local
     volumes:
       - .:/app:rw
     profiles:
@@ -18,7 +17,6 @@ services:
 
   backend_staging:
     <<: *backend
-    image: djangocontainerdemo_backend_staging
     profiles:
       - staging
     # depends_on:

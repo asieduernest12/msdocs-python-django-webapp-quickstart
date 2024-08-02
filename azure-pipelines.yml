@@ -47,4 +47,4 @@ steps:
       deployToSlotOrASE: true
       resourceGroupName: 'msdocs-python-webapp-quickstart'
       slotName: 'production'
-      containers: dcrops.azurecr.io/djangocontainerdemo_backend_staging:latest
+      containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
