@@ -4,6 +4,7 @@ services:
     image: djangocontainerdemo_backend
     ports:
       - '8000-8004:8000'
+    restart: unless-stopped      
     volumes:
       - .:/app:rw
     # depends_on:
