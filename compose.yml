@@ -1,12 +1,26 @@
 services:
-  backend:
+  backend: &backend
     build: .
     image: djangocontainerdemo_backend
     ports:
       - '8000-8004:8000'
-    restart: unless-stopped      
+    restart: unless-stopped
+
+  backend_local:
+    <<: *backend
+    image: djangocontainerdemo_backend_local
     volumes:
       - .:/app:rw
+    profiles:
+      - local
+    # depends_on:
+    #   - db
+
+  backend_staging:
+    <<: *backend
+    image: djangocontainerdemo_backend_staging
+    profiles:
+      - staging
     # depends_on:
     #   - db
 
