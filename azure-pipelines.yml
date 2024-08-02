@@ -9,7 +9,7 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-  
+
 strategy:
   maxParallel: 1
 
@@ -43,5 +43,5 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'msdocs-python-webapp-quickstart'
     slotName: 'production'
-    # multicontainerConfigFile: '**/compose.yml'
-    containerCommand: 'docker compose -f **/compose.yml up backend -d'
+    containers: djangocontainerdemo_backend 
+    containerCommand: 'docker compose up -f **/compose.yml -d'
