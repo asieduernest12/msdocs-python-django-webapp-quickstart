@@ -4,8 +4,8 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 trigger:
-- main
-- dev
+  - main
+  - dev
 
 pool:
   vmImage: ubuntu-latest
@@ -13,35 +13,35 @@ pool:
 strategy:
   maxParallel: 1
 
-steps:  
-- task: DockerCompose@1
-  inputs:
-    containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
-    azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
-    dockerComposeFile: '**/compose.yml'
-    action: 'Build services'
-    includeSourceTags: true
-    includeLatestTag: true
-    projectName: django_container_demo
-    
-- task: DockerCompose@1
-  inputs:
-    containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
-    azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
-    dockerComposeFile: '**/compose.yml'
-    action: 'Push services'
-    includeSourceTags: true
-    includeLatestTag: true
-    projectName: django_container_demo
+steps:
+  - task: DockerCompose@1
+    inputs:
+      containerregistrytype: 'Azure Container Registry'
+      azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
+      azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
+      dockerComposeFile: '**/compose.yml'
+      action: 'Build services'
+      includeSourceTags: true
+      includeLatestTag: true
+      projectName: django_container_demo
 
-- task: AzureWebAppContainer@1
-  inputs:
-    azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
-    appName: 'django-demo-webapp-container'
-    deployToSlotOrASE: true
-    resourceGroupName: 'msdocs-python-webapp-quickstart'
-    slotName: 'production'
-    containers: dcrops.azurecr.io/djangocontainerdemo_backend 
-    containerCommand: 'docker compose up -f **/compose.yml -d'
+  - task: DockerCompose@1
+    inputs:
+      containerregistrytype: 'Azure Container Registry'
+      azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
+      azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
+      dockerComposeFile: '**/compose.yml'
+      action: 'Push services'
+      includeSourceTags: true
+      includeLatestTag: true
+      projectName: django_container_demo
+
+  - task: AzureWebAppContainer@1
+    inputs:
+      azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
+      appName: 'django-demo-webapp-container'
+      deployToSlotOrASE: true
+      resourceGroupName: 'msdocs-python-webapp-quickstart'
+      slotName: 'production'
+      containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
+      containerCommand: 'docker compose up -f **/compose.yml -d'
