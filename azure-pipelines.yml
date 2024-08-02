@@ -39,9 +39,9 @@ steps:
   - task: AzureWebAppContainer@1
     inputs:
       azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
-      appName: 'django-demo-webapp-container'
+      appName: 'django-demo-docker-compose'
       deployToSlotOrASE: true
       resourceGroupName: 'msdocs-python-webapp-quickstart'
       slotName: 'production'
       containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
-      containerCommand: 'docker compose up -f **/compose.yml -d'
+      containerCommand: 'docker compose up -f **/compose.yml backend  -d'
