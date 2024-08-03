@@ -42,7 +42,7 @@ stages:
             azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
             dockerComposeFile: '**/compose.yml'
             action: 'Run compose command'
-            dockerComposeCommand: 'run bash -c ". init.sh  &1>>/dev/null & sleep 3 && curl --fail http://localhost:8000"'
+            dockerComposeCommand: 'run backend bash -c ". init.sh  &1>>/dev/null & sleep 3 && curl --fail http://localhost:8000"'
             includeSourceTags: true
             includeLatestTag: true
             projectName: django_container_demo
