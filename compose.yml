@@ -2,6 +2,7 @@ services:
   backend: &backend
     build: .
     image: djangocontainerdemo_backend
+    command: init.sh
     ports:
       - '${PORT_EXT:-8000}:8000'
     restart: unless-stopped
@@ -22,14 +23,16 @@ services:
     # depends_on:
     #   - db
 
-  # db:
-  #   image: mysql:8.3 # Specify the desired MySQL version
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: mypassword
-  #     MYSQL_DATABASE: mydatabase
-  #   volumes:
-  #     - db_data:/var/lib/mysql
-  #   ports:
-  #     - '3307:3306'
+  db:
+    image: mysql:8.3 # Specify the desired MySQL version
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - '3307:3306'
+    profiles: [local, staging]
+    
 volumes:
   db_data:
