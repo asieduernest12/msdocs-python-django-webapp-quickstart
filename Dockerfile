@@ -19,7 +19,8 @@ RUN pip install -r requirements.txt
 COPY . .
 COPY sshd_config /etc/ssh/
 
-RUN chmod u+x ./init.sh
+RUN chmod u+x ./init.sh \
+    && make build-assets
 
 # Expose the port for the Django application
 EXPOSE 8000 2222
