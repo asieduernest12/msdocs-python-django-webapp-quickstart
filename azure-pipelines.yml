@@ -5,8 +5,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-strategy:
-  maxParallel: 1
+
 
 stages:
 - stage: Build
