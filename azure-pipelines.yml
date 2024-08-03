@@ -3,10 +3,7 @@ trigger:
   - dev
 
 pool:
-  vmImage: ubuntu-latest
-
-strategy:
-  maxParallel: 1
+  vmImage: 'ubuntu-latest'
 
 stages:
 - stage: Build
@@ -14,19 +11,21 @@ stages:
   jobs:
     - job: BuildJob
       displayName: Build Job
+      pool:
+        vmImage: 'ubuntu-latest'
       steps:
-        - task: DockerCompose@1
+        - task: DockerCompose@0
           displayName: Build Image for Staging
           inputs:
             containerregistrytype: 'Azure Container Registry'
             azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
-            azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
+            azureContainerRegistry: 'dcrops'
             dockerComposeFile: '**/compose.yml'
             action: 'Build services'
             includeSourceTags: true
             includeLatestTag: true
-            projectName: django_container_demo
-            projectFile: staging
+            projectName: 'django_container_demo'
+            projectFile: 'staging'
 
 - stage: Test
   displayName: Test Stage
@@ -34,12 +33,14 @@ stages:
   jobs:
     - job: TestJob
       displayName: Test Job
+      pool:
+        vmImage: 'ubuntu-latest'
       steps:
         - script: |
             echo "Starting services..."
             docker-compose -f compose.yml up -d
             echo "Waiting for services to start..."
-            sleep 3
+            sleep 30
             echo "Running curl to check localhost:8000"
             curl -f http://localhost:8000 || (echo "Test failed" && exit 1)
           displayName: Run Tests
@@ -50,19 +51,21 @@ stages:
   jobs:
     - job: DeployJob
       displayName: Deploy Job
+      pool:
+        vmImage: 'ubuntu-latest'
       steps:
-        - task: DockerCompose@1
+        - task: DockerCompose@0
           displayName: Push Image for Staging
           inputs:
             containerregistrytype: 'Azure Container Registry'
             azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
-            azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
+            azureContainerRegistry: 'dcrops'
             dockerComposeFile: '**/compose.yml'
             action: 'Push services'
             includeSourceTags: true
             includeLatestTag: true
-            projectName: django_container_demo
-            projectFile: staging
+            projectName: 'django_container_demo'
+            projectFile: 'staging'
 
         - task: AzureWebAppContainer@1
           displayName: Deploy to Azure Web App
@@ -72,4 +75,4 @@ stages:
             deployToSlotOrASE: true
             resourceGroupName: 'msdocs-python-webapp-quickstart'
             slotName: 'production'
-            containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
+            containers: 'dcrops.azurecr.io/djangocontainerdemo_backend:latest'
