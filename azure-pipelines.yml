@@ -41,12 +41,12 @@ stages:
             azureSubscription: 'Azure subscription 1(c72bfa58-4c29-4b94-9788-b65037744171)'
             azureContainerRegistry: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
             dockerComposeFile: '**/compose.yml'
-            action: 'Run compose command'
+            action: 'Run a Docker Compose command'
             dockerComposeCommand: 'run backend bash -c ". init.sh  &1>>/dev/null & sleep 3 && curl --fail http://localhost:8000"'
-            includeSourceTags: true
             includeLatestTag: true
             projectName: django_container_demo
             projectFile: staging
+
 
 - stage: Deploy
   displayName: Deploy Stage
