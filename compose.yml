@@ -2,7 +2,7 @@ services:
   backend: &backend
     build: .
     image: djangocontainerdemo_backend
-    command: init.sh
+    command: bash -c ". init.sh"
     ports:
       - '${PORT_EXT:-8000}:8000'
     restart: unless-stopped

@@ -26,7 +26,7 @@ RUN chmod u+x ./init.sh \
 EXPOSE 8000 2222
 
 # Set the command to run the Django development server
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-ENTRYPOINT [ "./init.sh" ]
+CMD bash -c ". init.sh"
+# ENTRYPOINT [ "./init.sh" ]
 
 
