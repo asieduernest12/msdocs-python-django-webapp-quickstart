@@ -13,8 +13,8 @@ services:
       - .:/app:rw
     profiles:
       - local
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
 
   backend_staging:
     <<: *backend
