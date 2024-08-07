@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: djangocontainerdemo-backend
-  namespace: default-1723003205165
+  namespace: 
 spec:
   replicas: 1
   selector:

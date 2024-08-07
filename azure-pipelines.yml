@@ -14,6 +14,7 @@ variables:
   acrRegistry:  'dcrops.azurecr.io'
   k8serviceConnection: 'django-demo-k8c-djangodmk8'
   projectName: djangocontainerdemo
+  k8namespace: default-1723003205165
 
 stages:
   - stage: Build
@@ -97,7 +98,7 @@ stages:
             displayName: Deploy
             inputs:
               kubernetesServiceConnection: $(k8serviceConnection)
-              namespace: default
+              namespace: $(k8namespace)
               manifests: |
                 **/manifests/deployment.yml
                 **/manifests/service.yml
