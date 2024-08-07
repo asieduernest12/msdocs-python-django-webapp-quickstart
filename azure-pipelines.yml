@@ -108,6 +108,7 @@ stages:
             inputs:
               action: 'deploy'
               connectionType: 'kubernetesServiceConnection'
+              azureSubscriptionConnection: '$(azSubscription)'
               kubernetesServiceConnection: '$(k8serviceConnection)'
               azureResourceGroup: '$(azResourceGroup)'
               namespace: '$(k8namespace)'
