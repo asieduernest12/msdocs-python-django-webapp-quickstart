@@ -12,6 +12,7 @@ variables:
   acr: '{"loginServer":"dcrops.azurecr.io", "id" : "/subscriptions/c72bfa58-4c29-4b94-9788-b65037744171/resourceGroups/msdocs-python-webapp-quickstart/providers/Microsoft.ContainerRegistry/registries/dcrops"}'
   acrRepo: 'djangocontainerdemo_backend'
   acrRegistry:  'dcrops.azurecr.io'
+  k8Connection: 'django-demo-k8c-djangodmk8'
 
 stages:
   - stage: Build
