@@ -2,7 +2,6 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: djangocontainerdemo-backend
-  namespace: 
 spec:
   replicas: 1
   selector:
