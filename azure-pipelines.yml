@@ -101,7 +101,7 @@ stages:
               command: 'apply'
               secretType: 'dockerRegistry'
               containerRegistryType: 'Azure Container Registry'
-              arguments: '-f **/deployment.yaml'
+              arguments: '-f **/deployment.yml'
 
           - task: KubernetesManifest@1
             inputs:
