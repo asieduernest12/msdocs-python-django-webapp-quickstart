@@ -83,16 +83,16 @@ stages:
         displayName: Deploy Job
         steps:
           
-          - task: AzureWebAppContainer@1
-            displayName: Deploy to Azure Web App
-            inputs:
-              azureSubscription: $(azSubscription)
-              appName: 'django-demo-docker-compose'
-              deployToSlotOrASE: true
-              resourceGroupName: 'msdocs-python-webapp-quickstart'
-              slotName: 'production'
-              # containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
-              containers: $(acrRegistry)/$(acrRepo):$(tag)
+          # - task: AzureWebAppContainer@1
+          #   displayName: Deploy to Azure Web App
+          #   inputs:
+          #     azureSubscription: $(azSubscription)
+          #     appName: 'django-demo-docker-compose'
+          #     deployToSlotOrASE: true
+          #     resourceGroupName: 'msdocs-python-webapp-quickstart'
+          #     slotName: 'production'
+          #     # containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
+          #     containers: $(acrRegistry)/$(acrRepo):$(tag)
           
           - task: KubernetesManifest@0
             displayName: Deploy
