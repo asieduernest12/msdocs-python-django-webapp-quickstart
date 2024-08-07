@@ -94,17 +94,17 @@ stages:
           #     # containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
           #     containers: $(acrRegistry)/$(acrRepo):$(tag)
           
-          - task: KubernetesManifest@0
-            displayName: Deploy
+          - task: KubernetesManifest@1
             inputs:
-              kubernetesServiceConnection: $(k8serviceConnection)
-              namespace: $(k8namespace)
+              action: 'deploy'
+              connectionType: 'kubernetesServiceConnection'
+              kubernetesServiceConnection: '$(k8serviceConnection)'
+              namespace: '$(k8namespace)'
               manifests: |
                 **/manifests/deployment.yml
                 **/manifests/service.yml
-              containers: |
-                $(acrRegistry)/$(acrRepo):$(tag)
+              containers: '$(acrRegistry)/$(acrRepo):$(tag)'
               # imagePullSecrets: |
               #   some-secret
               #   some-other-secret
-              arguments: '--validate=false'
+              # arguments: '--validate=false'
