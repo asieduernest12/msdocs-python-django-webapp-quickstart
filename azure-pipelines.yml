@@ -107,3 +107,4 @@ stages:
               # imagePullSecrets: |
               #   some-secret
               #   some-other-secret
+              arguments: '--validate=false'
