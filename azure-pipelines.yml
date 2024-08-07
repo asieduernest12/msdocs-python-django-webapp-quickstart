@@ -15,6 +15,7 @@ variables:
   k8serviceConnection: 'django-demo-k8c-djangodmk8'
   projectName: djangocontainerdemo
   k8namespace: default-1723003205165
+  azResourceGroup: MA_defaultazuremonitorworkspace-eus_eastus_managed
 
 stages:
   - stage: Build
@@ -93,21 +94,22 @@ stages:
           #     slotName: 'production'
           #     # containers: dcrops.azurecr.io/djangocontainerdemo_backend:latest
           #     containers: $(acrRegistry)/$(acrRepo):$(tag)
-          - task: Kubernetes@1
-            inputs:
-              connectionType: 'Kubernetes Service Connection'
-              kubernetesServiceEndpoint: 'django-demo-k8c-djangodmk8'
-              namespace: '$(k8namespace)'
-              command: 'apply'
-              secretType: 'dockerRegistry'
-              containerRegistryType: 'Azure Container Registry'
-              arguments: '-f **/deployment.yml'
+          # - task: Kubernetes@1
+          #   inputs:
+          #     connectionType: 'Kubernetes Service Connection'
+          #     kubernetesServiceEndpoint: 'django-demo-k8c-djangodmk8'
+          #     namespace: '$(k8namespace)'
+          #     command: 'apply'
+          #     secretType: 'dockerRegistry'
+          #     containerRegistryType: 'Azure Container Registry'
+          #     arguments: '-f **/deployment.yml'
 
           - task: KubernetesManifest@1
             inputs:
               action: 'deploy'
               connectionType: 'kubernetesServiceConnection'
               kubernetesServiceConnection: '$(k8serviceConnection)'
+              azureResourceGroup: '$(azResourceGroup)'
               namespace: '$(k8namespace)'
               manifests: |
                 **/manifests/deployment.yml
