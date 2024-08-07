@@ -13,6 +13,7 @@ variables:
   acrRepo: 'djangocontainerdemo_backend'
   acrRegistry:  'dcrops.azurecr.io'
   k8serviceConnection: 'django-demo-k8c-djangodmk8'
+  projectName: djangocontainerdemo
 
 stages:
   - stage: Build
