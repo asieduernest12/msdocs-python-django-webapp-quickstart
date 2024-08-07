@@ -31,7 +31,7 @@ stages:
               action: 'Build services'
               includeSourceTags: true
               includeLatestTag: true
-              projectName: $(projectName)
+              projectName: '$(projectName)'
               projectFile: staging
           
           - task: DockerCompose@1
@@ -45,7 +45,7 @@ stages:
               includeSourceTags: true
               includeLatestTag: true
               container: "djangocontainerdemo_backend"
-              projectName: $(projectName)
+              projectName: '$(projectName)'
               projectFile: staging
 
               
@@ -70,7 +70,7 @@ stages:
           #     dockerComposeCommand: "run backend bash -c \". init.sh  &1>>/dev/null & sleep 3 && curl --fail http://localhost:8000\""
           #     includeSourceTags: true
           #     includeLatestTag: true
-          #     projectName: $(projectName)
+          #     projectName: '$(projectName)'
           #     projectFile: staging
 
   - stage: Deploy
