@@ -1,0 +1,43 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: djangocontainerdemo-backend
+  namespace: default-1723003205165
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: djangocontainerdemo-backend
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: djangocontainerdemo-backend
+    spec:
+      containers:
+        - name: djangocontainerdemo-backend
+          image: dcrops.azurecr.io/djangocontainerdemo_backend:${BUILD_VERSION}
+          ports:
+          - containerPort: 8000
+            protocol: TCP
+          resources:
+            limits:
+              cpu: '1'
+              memory: 256M
+            requests:
+              cpu: 500m
+              memory: 256M
+---
+kind: Service
+metadata:
+  name: djangocontainerdemo-backend-service
+  namespace: default-1723003205165
+spec:
+  selector:
+    app: djangocontainerdemo-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  # imagePullSecrets:
+  #   - name: acr-auth
